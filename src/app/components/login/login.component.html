@@ -1,0 +1,27 @@
+<section class="text-center">
+
+    <main class="form-signin">
+        <form [formGroup]="loginForm">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" formControlName="email"
+                    [title]="f.email.errors ? 'Please enter correct Email! ' : ''"
+                    [ngClass]="{'is-invalid' : f.email.errors && f.email.dirty, 'is-valid': !f.email.errors && f.email.dirty}"
+                    placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" formControlName="password"
+                    [title]="f.password.errors ? 'Please enter correct password! ' : ''"
+                    [ngClass]="{'is-invalid' : f.password.errors && f.password.dirty, 'is-valid': !f.password.errors && f.password.dirty}"
+                    placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" (click)="login()">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        </form>
+    </main>
+
+</section>

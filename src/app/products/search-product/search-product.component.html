@@ -1,0 +1,30 @@
+<header class="py-3 mb-4 border-bottom">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4">Product List</span>
+        </a>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search"
+            (keyup)="search$.next($any($event.target).value)">
+        </form>
+    </div>
+</header>
+
+<section class="container mt-2">
+    <div *ngIf="this.productList.length > 0">
+        <div *ngFor="let product of productList">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.price}}</p>
+                    <p class="card-text">{{product.sku}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.productList.length == 0" class="no-record">Please start Searching...</div>
+</section>

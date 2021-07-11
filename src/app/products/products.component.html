@@ -1,0 +1,66 @@
+<header class="py-3 mb-4 border-bottom">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4">Products List</span>
+        </a>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+            <button class="btn btn-primary ml-2" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</button>
+            <button class="btn btn-secondary" [routerLink]="['/search']" routerLinkActive="router-link-active" >Search Products</button>
+        </form>
+    </div>
+</header>
+
+<section class="container mt-2">
+    <div *ngIf="this.productList.length > 0">
+        <div *ngFor="let product of productList">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.price}}</p>
+                    <p class="card-text">{{product.sku}}</p>
+                    <button (click)="delete(product._id)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.productList.length == 0" class="no-record">No Product Found!</div>
+</section>
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" [formGroup]="addForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Item" formControlName="name" 
+                        [title]="f.name.errors ? 'Please enter ' : ''"
+                        [ngClass]="{'is-invalid' : f.name.errors && f.name.dirty, 'is-valid': !f.name.errors && f.name.dirty}">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" placeholder="21" formControlName="price" 
+                    [title]="f.price.errors ? 'Please enter price' : ''"
+                        [ngClass]="{'is-invalid' : f.price.errors && f.price.dirty, 'is-valid': !f.price.errors && f.price.dirty}">
+                </div>
+                <div class="mb-3">
+                    <label for="sku" class="form-label">SKU</label>
+                    <input type="number" class="form-control" id="sku" placeholder="123" formControlName="sku" 
+                    [title]="f.sku.errors ? 'Please enter sku' : ''"
+                        [ngClass]="{'is-invalid' : f.sku.errors && f.sku.dirty, 'is-valid': !f.sku.errors && f.sku.dirty}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addProduct()" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>

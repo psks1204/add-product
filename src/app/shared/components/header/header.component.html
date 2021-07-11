@@ -1,0 +1,19 @@
+<nav class="py-2 bg-light border-bottom">
+    <div class="container d-flex flex-wrap">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4">Test Demo</span>
+        </a>
+        <ul class="nav me-auto" *ngIf="this.authService.isLoggedIn">
+            <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
+        </ul>
+        <ul class="nav" *ngIf="this.authService.isLoggedIn">
+            <li class="nav-item">
+                <button class="btn btn-danger" (click)="this.authService.signout()">Sign out</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--  -->
